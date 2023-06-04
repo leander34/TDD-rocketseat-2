@@ -4,6 +4,7 @@ import { InMemoryStudentRepository } from '../../../test/repositories/in-memory-
 import { Chanllenge } from '../../domain/entities/challenge'
 import { Student } from '../../domain/entities/student'
 import { CreateChallengeSubmission } from './create-challenge-submission'
+import { Submission } from '../../domain/entities/submission'
 
 
 describe('Create challenge submission use case', () => {
@@ -24,5 +25,10 @@ describe('Create challenge submission use case', () => {
         }) 
 
         expect(response).toBeTruthy()
+
+        expect(sut.execute({
+            studentId: student.id,
+            challengeId: challenge.id
+        })).resolves.toBeInstanceOf(Submission)
     })
  })
